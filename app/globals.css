@@ -1,0 +1,200 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated theme to match OpenAI's dark aesthetic */
+  --background: oklch(0.11 0 0); /* Very dark background like OpenAI */
+  --foreground: oklch(0.95 0 0); /* Light text */
+  --card: oklch(0.15 0 0); /* Slightly lighter dark for cards */
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.75 0.15 160); /* Subtle teal accent like OpenAI */
+  --primary-foreground: oklch(0.11 0 0);
+  --secondary: oklch(0.2 0 0); /* Dark gray for secondary elements */
+  --secondary-foreground: oklch(0.85 0 0);
+  --muted: oklch(0.18 0 0); /* Muted dark gray */
+  --muted-foreground: oklch(0.65 0 0); /* Muted text */
+  --accent: oklch(0.22 0 0); /* Subtle accent background */
+  --accent-foreground: oklch(0.9 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.25 0 0); /* Subtle borders */
+  --input: oklch(0.18 0 0); /* Input background */
+  --ring: oklch(0.75 0.15 160); /* Focus ring matches primary */
+  --sidebar: oklch(0.13 0 0); /* Sidebar background */
+  --sidebar-foreground: oklch(0.9 0 0);
+  --sidebar-primary: oklch(0.75 0.15 160);
+  --sidebar-primary-foreground: oklch(0.11 0 0);
+  --sidebar-accent: oklch(0.2 0 0);
+  --sidebar-accent-foreground: oklch(0.9 0 0);
+  --sidebar-border: oklch(0.22 0 0);
+  --sidebar-ring: oklch(0.75 0.15 160);
+  --radius: 0.75rem; /* Slightly more rounded like OpenAI */
+
+  /* Added custom chat-specific colors */
+  --chat-user: oklch(0.75 0.15 160); /* User message background */
+  --chat-assistant: oklch(0.15 0 0); /* Assistant message background */
+  --chat-hover: oklch(0.18 0 0); /* Hover states */
+}
+
+.dark {
+  --background: oklch(0.11 0 0);
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.15 0 0);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.75 0.15 160);
+  --primary-foreground: oklch(0.11 0 0);
+  --secondary: oklch(0.2 0 0);
+  --secondary-foreground: oklch(0.85 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.22 0 0);
+  --accent-foreground: oklch(0.9 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.25 0 0);
+  --input: oklch(0.18 0 0);
+  --ring: oklch(0.75 0.15 160);
+  --sidebar: oklch(0.13 0 0);
+  --sidebar-foreground: oklch(0.9 0 0);
+  --sidebar-primary: oklch(0.75 0.15 160);
+  --sidebar-primary-foreground: oklch(0.11 0 0);
+  --sidebar-accent: oklch(0.2 0 0);
+  --sidebar-accent-foreground: oklch(0.9 0 0);
+  --sidebar-border: oklch(0.22 0 0);
+  --sidebar-ring: oklch(0.75 0.15 160);
+  --chat-user: oklch(0.75 0.15 160);
+  --chat-assistant: oklch(0.15 0 0);
+  --chat-hover: oklch(0.18 0 0);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Added custom chat color variables */
+  --color-chat-user: var(--chat-user);
+  --color-chat-assistant: var(--chat-assistant);
+  --color-chat-hover: var(--chat-hover);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* Added custom animations for typing effect */
+@keyframes typing-dots {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+.typing-dot {
+  animation: typing-dots 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.3s ease-out;
+}
+
+/* Smooth scrolling for chat messages */
+.chat-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Loading state for messages */
+.message-streaming {
+  border-left: 2px solid hsl(var(--primary));
+  padding-left: 12px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Enhanced button states */
+.button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Better focus states for accessibility */
+.focus-enhanced:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
